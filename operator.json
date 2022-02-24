@@ -1,10 +1,10 @@
 {
-  "name": "OPERATOR NAME",
-  "description": "DESCRIPTION",
+  "name": "Karolinska demultiplex docker operator",
+  "description": "Implements the Karolinska demultiplexing Python script",
   "tags": ["template"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/OPERATOR_NAME"],
-  "container": "tercen/CONTAINER_NAME:TAG",
+  "urls": ["https://github.com/tercen/karolinska_demultiplex_docker_operator"],
+  "container": "fcadete/karolinska_demultiplex_docker_operator:0.0.1",
   "isWebApp": false
 }
 

@@ -3,12 +3,16 @@ FROM tercen/dartrusttidy:1.0.7
 USER root
 WORKDIR /operator
 
-RUN git clone https://github.com/tercen/OPERATOR_NAME.git
+COPY demultiplex_TCR_fastqs_by_row_and_column_barcodes.py /operator/demultiplex_TCR_fastqs_by_row_and_column_barcodes.py
+COPY demultiplex_TCR_fastqs_by_row_and_column_barcodes_v2.py /operator/demultiplex_TCR_fastqs_by_row_and_column_barcodes_v2.py
 
-WORKDIR /operator/OPERATOR_NAME
 
-RUN echo X.X.X && git pull
-RUN git checkout X.X.X
+RUN git clone https://github.com/tercen/karolinska_demultiplex_operator.git
+
+WORKDIR /operator/karolinska_demultiplex_operator
+
+RUN echo "2020/02/24 - 20:24" && git pull
+RUN git checkout
 
 RUN R -e "renv::restore(confirm=FALSE)"
 
