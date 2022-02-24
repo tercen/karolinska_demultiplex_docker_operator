@@ -1,4 +1,4 @@
-FROM tercen/dartrusttidy:1.0.7
+FROM tercen/dartrusttidy:travis-17
 
 USER root
 WORKDIR /operator
