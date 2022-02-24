@@ -6,12 +6,13 @@ WORKDIR /operator
 COPY demultiplex_TCR_fastqs_by_row_and_column_barcodes.py /operator/demultiplex_TCR_fastqs_by_row_and_column_barcodes.py
 COPY demultiplex_TCR_fastqs_by_row_and_column_barcodes_v2.py /operator/demultiplex_TCR_fastqs_by_row_and_column_barcodes_v2.py
 
+RUN apt-get update && apt install -y python3-pip && python3 -m pip install Levenshtein
 
 RUN git clone https://github.com/tercen/karolinska_demultiplex_operator.git
 
 WORKDIR /operator/karolinska_demultiplex_operator
 
-RUN echo "2020/02/24 - 20:24" && git pull
+RUN echo "2020/02/24 - 22:08" && git pull
 RUN git checkout
 
 RUN R -e "renv::restore(confirm=FALSE)"

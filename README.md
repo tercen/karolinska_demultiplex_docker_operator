@@ -1,26 +1,33 @@
-# Template Docker Operator
+# Karolinsa's Demultiplex Docker Operator
 
-The Template Docker operator is a template repository for the creation of docker operators in Tercen.
+#### Description
 
-More information on how to develop such an operator can be found in the [Tercen app builder's guide](https://tercen.github.io/appbuilders-guide/).
+The Karolinska's Demultiplex Docker operator implements a FastQ demultiplexing script inside Tercen.
 
-Checklist before building the image:
+#### Usage
 
-* For all operators
-    + Replace repository URL
-    + Replace version number in files
+Input projection|.
+---|---
+Leave empty
 
-* For R operators
-    + isWebApp: false
+For this operator to work there must be two folders on the file system (replace <username> and <projectname> with the user and project names for this run):
+    
+    - /var/lib/tercen/external/read/<username>/<project_name>/files_to_demultiplex
+    - /var/lib/tercen/external/write/<username>/<project_name>/
 
-* For Shiny operators
-    + isWebApp: true
+The operator will look for the following files inside the first of these folders (`files_to_demultiplex`):
 
-* Build the image
+    1) A forward read FastQ file (includes "_R1_" in it's name);
+    2) A reverse read FastQ file (includes "_R2_" in it's name);
+    3) A `col.txt` file;
+    4) A `row.txt` file;
 
-```bash
-VERSION=0.10.0.1
-docker build -t tercen/shiny_docker_operator:$VERSION .
-docker push tercen/shiny_docker_operator:$VERSION
-git add -A && git commit -m "$VERSION" && git tag  $VERSION  && git push && git push --tags
-```
+If these four files are present in the folder, the operator will run the demultiplexing script script. The demultiplexed FastQ files will be outputed to the `/var/lib/tercen/external/write/<username>/<project_name>/demultiplexed_fastqs` folder. File names will come from the `col.txt` and `row.txt` files.
+
+In addition, the following Tercen table will be outputed from the operator
+
+Outputs|.
+---|---
+sample | String, sample name from the col.txt and row.txt files
+read_number | Integer, number of reads assigned to each sample
+
