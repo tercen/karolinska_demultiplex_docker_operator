@@ -31,3 +31,10 @@ Outputs|.
 sample | String, sample name from the col.txt and row.txt files
 read_number | Integer, number of reads assigned to each sample
 
+
+# Build
+
+```shell
+docker build -t tercen/karolinska_demultiplex_docker_operator:latest .
+docker tag tercen/karolinska_demultiplex_docker_operator:latest fcadete/karolinska_demultiplex_docker_operator:0.0.1
+``` 
