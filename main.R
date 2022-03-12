@@ -20,7 +20,7 @@ if (length(dir(input_path)) == 0) {
 
 # Define and create output paths
 
-output_folder <- paste0(format(Sys.time(), "%Y_%m_%d_%H:%M:%S"),
+output_folder <- paste0(format(Sys.time(), "%Y_%m_%d_%H_%M_%S"),
                         "_demultiplexed_fastqs")
 
 output_path <- paste0("/var/lib/tercen/share/write/",
