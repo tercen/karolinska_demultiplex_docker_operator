@@ -7,18 +7,18 @@ ctx <- tercenCtx()
 input_folder <- ctx$cselect()[[1]][[1]]
 
 # Define input and output paths
-input_path <- paste0("/var/lib/tercen/share/write/", input_folder)
+input_path <- paste0("/var/lib/tercen/share/read/", input_folder)
 
 
 # Check if a "files_to_demultiplex" folder exists and is not empty
 if( dir.exists(input_path) == FALSE) {
 
-  stop("ERROR: files_to_demultiplex folder does not exist in project read folder.")
+  stop(paste("ERROR:", input_folder, "folder does not exist in project read folder."))
 
 }
 
 if (length(dir(input_path)) == 0) {
-  stop("ERROR: files_to_demultiplex folder is empty.")
+  stop(paste("ERROR:", input_folder, "folder is empty."))
 }
 
 # Define and create output paths
