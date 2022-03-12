@@ -18,6 +18,7 @@ RUN echo 'options("tercen.serviceUri"="http://tercen:5400/api/v1/")' >> /usr/loc
 
 RUN python3 -m pip install Levenshtein
 
+RUN echo "2022/03/12 16:12"
 COPY . /operator
 WORKDIR /operator
 
