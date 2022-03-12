@@ -4,8 +4,11 @@ library(stringr)
 
 ctx <- tercenCtx()
 
-# Define input path
-input_path <- "/var/lib/tercen/share/read/files_to_demultiplex"
+input_folder <- ctx$cselect()[[1]][[1]]
+
+# Define input and output paths
+input_path <- paste0("/var/lib/tercen/share/write/", input_folder)
+
 
 # Check if a "files_to_demultiplex" folder exists and is not empty
 if( dir.exists(input_path) == FALSE) {
