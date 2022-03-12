@@ -4,7 +4,7 @@
   "tags": ["template"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/karolinska_demultiplex_docker_operator"],
-  "container": "fcadete/karolinska_demultiplex_docker_operator:0.0.1",
+  "container": "fcadete/karolinska_demultiplex_docker_operator:0.0.2",
   "isWebApp": false
 }
 

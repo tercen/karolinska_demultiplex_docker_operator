@@ -9,7 +9,7 @@ RUN git clone https://github.com/tercen/karolinska_demultiplex_operator.git
 
 WORKDIR /operator/karolinska_demultiplex_operator
 
-RUN echo "2020/02/25 - 13:25" && git pull
+RUN echo "2020/03/12 - 16:05" && git pull
 RUN git checkout
 
 RUN R -e "renv::restore(confirm=FALSE)"
