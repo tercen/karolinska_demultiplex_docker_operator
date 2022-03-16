@@ -34,7 +34,6 @@ if (length(dir(input_path)) == 0) {
 
 output_volume = "write"
 output_folder <- paste0(output_volume, "/",
-                        input_folder, "/",
                         format(Sys.time(), "%Y_%m_%d_%H_%M_%S"),
                         "_demultiplexed_fastqs")
 
