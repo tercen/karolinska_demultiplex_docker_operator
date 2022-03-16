@@ -4,32 +4,44 @@ library(stringr)
 
 ctx <- tercenCtx()
 
-input_folder <- ctx$cselect()[[1]][[1]]
+if(!("folder"  %in% ctx$cnames)) {
+  stop("No column named 'folder' found.")
+}
+
+folder = ctx$cselect(c("folder"))[[1]][[1]]
+
+parts =  unlist(strsplit(folder, '/'))
+volume = parts[[1]]
+input_folder <- paste(parts[-1], collapse="/")
+
 
 # Define input and output paths
-input_path <- paste0("/var/lib/tercen/share/read/", input_folder)
+input_path <- paste0("/var/lib/tercen/share/", volume, "/", input_folder)
 
 
 # Check if a "files_to_demultiplex" folder exists and is not empty
 if( dir.exists(input_path) == FALSE) {
 
-  stop(paste("ERROR:", input_folder, "folder does not exist in project read folder."))
+  stop(paste("ERROR:", input_folder, "folder does not exist in project volume ", volume ))
 
 }
 
 if (length(dir(input_path)) == 0) {
-  stop(paste("ERROR:", input_folder, "folder is empty."))
+  stop(paste("ERROR:", input_folder, "folder is empty  in project volume ", volume))
 }
 
 # Define and create output paths
 
-output_folder <- paste0(format(Sys.time(), "%Y_%m_%d_%H_%M_%S"),
+output_volume = "write"
+output_folder <- paste0(output_volume, "/",
+                        input_folder, "/",
+                        format(Sys.time(), "%Y_%m_%d_%H_%M_%S"),
                         "_demultiplexed_fastqs")
 
-output_path <- paste0("/var/lib/tercen/share/write/",
+output_path <- paste0("/var/lib/tercen/share/",
                       output_folder, "/")
 
-system(paste("mkdir", output_path))
+system(paste("mkdir -p", output_path))
 
 # Check if individual files are present in the input folder
 
